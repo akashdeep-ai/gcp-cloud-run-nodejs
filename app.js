@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
 </header>
 
 <main>
-    <h2>Hello 👋</h2>
+    <h2>Hello Akash 👋</h2>
     <p>This is a simple HTML page.</p>
 
     <button onclick="sayHello()">Click Me</button>
