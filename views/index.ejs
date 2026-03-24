@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= subject %></title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: #f4f7fb;
+        font-family: Arial, sans-serif;
+        color: #222;
+      }
+
+      .portfolio-wrapper {
+        max-width: 1000px;
+        margin: 30px auto;
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        color: #fff;
+        padding: 60px 30px;
+        text-align: center;
+      }
+
+      .hero img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #fff;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        margin-bottom: 20px;
+        color: #dbeafe;
+      }
+
+      .hero .btn-custom {
+        display: inline-block;
+        padding: 12px 22px;
+        background: #38bdf8;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+      }
+
+      .section {
+        padding: 40px 30px;
+      }
+
+      .section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #0f172a;
+      }
+
+      .about p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #475569;
+      }
+
+      .skills .badge {
+        font-size: 0.95rem;
+        margin: 6px;
+        padding: 10px 14px;
+        border-radius: 20px;
+      }
+
+      .project-card {
+        border: none;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease;
+        height: 100%;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .project-card .card-body {
+        padding: 20px;
+      }
+
+      .project-card h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .project-card p {
+        color: #64748b;
+        font-size: 0.95rem;
+      }
+
+      .contact-form {
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 14px;
+      }
+
+      .contact-form .form-control {
+        border-radius: 10px;
+        padding: 12px;
+      }
+
+      .contact-form button {
+        border-radius: 10px;
+        padding: 12px 20px;
+        font-weight: bold;
+      }
+
+      .footer {
+        background: #0f172a;
+        color: #cbd5e1;
+        text-align: center;
+        padding: 25px 20px;
+      }
+
+      .footer a {
+        color: #38bdf8;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero p {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="portfolio-wrapper">
+      <!-- Hero Section -->
+      <header class="hero">
+        <img
+          src="<%= profileImage || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80' %>"
+          alt="<%= name %>"
+        />
+        <h1><%= name %></h1>
+        <p>
+          <%= title || 'Full Stack Developer | UI Enthusiast | Problem Solver' %>
+        </p>
+        <p>
+          <%= intro || 'I build modern, scalable, and user-friendly web applications.' %>
+        </p>
+        <a class="btn-custom" href="<%= portfolioLink || '#' %>">View Portfolio</a>
+      </header>
+
+      <!-- About Section -->
+      <section class="section about">
+        <h2>About Me</h2>
+        <p>
+          <%= about || 'I am a passionate developer with experience in building responsive websites, backend systems, and clean user interfaces. I enjoy turning ideas into real products that people love to use.' %>
+        </p>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="section skills">
+        <h2>Skills</h2>
+        <div>
+          <% (skills || ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express', 'MongoDB', 'Bootstrap', 'React']).forEach(skill => { %>
+            <span class="badge badge-primary"><%= skill %></span>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="section">
+        <h2>Featured Projects</h2>
+        <div class="row">
+          <% (projects || [
+            {
+              title: 'Portfolio Website',
+              description: 'A personal portfolio website showcasing projects, skills, and contact information.',
+              image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+              link: '#'
+            },
+            {
+              title: 'E-Commerce Store',
+              description: 'An online shopping platform with product listing, cart, and payment integration.',
+              image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80',
+              link: '#'
+            },
+            {
+              title: 'Admin Dashboard',
+              description: 'A responsive analytics dashboard with charts, reports, and user management.',
+              image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+              link: '#'
+            }
+          ]).forEach(project => { %>
+            <div class="col-md-4 mb-4">
+              <div class="card project-card">
+                <img src="<%= project.image %>" alt="<%= project.title %>" />
+                <div class="card-body">
+                  <h5><%= project.title %></h5>
+                  <p><%= project.description %></p>
+                  <a href="<%= project.link %>" class="btn btn-outline-primary btn-sm">
+                    View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Contact Form -->
+      <section class="section">
+        <h2>Contact Me</h2>
+        <div class="contact-form">
+          <form action="<%= formAction || '/contact' %>" method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Connect with me</p>
+        <p>
+          <a href="<%= github || '#' %>">GitHub</a>
+          <a href="<%= linkedin || '#' %>">LinkedIn</a>
+          <a href="<%= twitter || '#' %>">Twitter</a>
+        </p>
+        <p class="mt-2">
+          <a href="<%= link %>">Unsubscribe</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
